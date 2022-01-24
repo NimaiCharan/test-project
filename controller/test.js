@@ -23,8 +23,9 @@ exports.getData = (req, res)=>{
 exports.postData = (req, res)=>{
     const testData = mongoose.model("testSchema",testSchema);
     var data = new testData({
-        "name":"Supriya",
-        "brand":"Chhole"
+        "name":req.body.name,
+        "brand":req.body.brand,
+        "smoke":req.body.smoke
     })
 
     data.save((err,data)=>{
@@ -34,4 +35,20 @@ exports.postData = (req, res)=>{
             res.send(data);
     });
     
+
+
+}
+
+exports.postman = (req, res)=>{
+    //res.send("Postman is working");
+    var username= req.body.username;
+    var pass = req.body.password;
+
+    if(username=="nimai" && pass=="pass"){
+        res.send("LOGGED IN");
+    }
+    else{
+        res.send("INVALID CREDENTIALS");
+    }
+   
 }
